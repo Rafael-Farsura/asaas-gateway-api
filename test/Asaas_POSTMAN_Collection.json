@@ -1,0 +1,655 @@
+{
+	"info": {
+		"_postman_id": "004f29ef-cd9c-4c68-a01d-fabb41d2d08e",
+		"name": "Asaas Integration API",
+		"description": "Coleção completa para gerenciamento de access tokens, clientes, pagamentos e links de pagamento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26563693"
+	},
+	"item": [
+		{
+			"name": "Access Tokens",
+			"item": [
+				{
+					"name": "Criar Access Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientId\": \"{{clientId}}\",\n    \"accessToken\": \"{{access_token}}\",\n    \"description\": \"Token do RHtrip para ambiente de produção\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/access-tokens",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"access-tokens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Access Tokens",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/access-tokens",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"access-tokens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Access Token por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/access-tokens/{{tokenId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"access-tokens",
+								"{{tokenId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Token por Client ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/access-tokens/client/RHtrip-SANDBOX-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"access-tokens",
+								"client",
+								"RHtrip-SANDBOX-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Access Token",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"new_asaas_access_token_here\",\n    \"description\": \"Token atualizado\",\n    \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/access-tokens/{{tokenId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"access-tokens",
+								"{{tokenId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desativar Access Token",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isActive\": false\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/access-tokens/{{tokenId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"access-tokens",
+								"{{tokenId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Access Token",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/access-tokens/{{tokenId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"access-tokens",
+								"{{tokenId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Criar Cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Usuário Teste\",\n  \"cpfCnpj\": \"571.895.310-41\",\n  \"email\": \"usuario@teste.com\",\n  \"phone\": \"+5588992814764\",\n  \"address\": \"Rua Exemplo\",\n  \"addressNumber\": \"51\",\n  \"province\": \"Bairro Exemplo\",\n  \"postalCode\": \"63100000\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/customers?environment={{environment}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "environment",
+									"value": "{{environment}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Clientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/customers?environment={{environment}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "environment",
+									"value": "{{environment}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment Links",
+			"item": [
+				{
+					"name": "Criar Link de Pagamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Rafael Farsura\",\n  \"description\": \"Comprando um produto de $70.000.000,00 #SQN\",\n  \"value\": 100,\n  \"billingType\": \"CREDIT_CARD\",\n  \"chargeType\": \"INSTALLMENT\",\n  \"dueDateLimitDays\": 10,\n  \"maxInstallmentCount\": 10\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payment-links?environment={{environment}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment-links"
+							],
+							"query": [
+								{
+									"key": "environment",
+									"value": "{{environment}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Links de Pagamento",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/payment-links?environment={{environment}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment-links"
+							],
+							"query": [
+								{
+									"key": "environment",
+									"value": "{{environment}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Testar Token - Link Pagamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Link de Pagamento Teste\",\n    \"description\": \"Teste de link de pagamento com access token\",\n    \"endDate\": \"2024-03-20\",\n    \"value\": 100.00,\n    \"billingType\": \"CREDIT_CARD\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payment-links",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment-links"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Criar Pagamento PIX",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customer\": \"{{customerId}}\",\n  \"value\": 100,\n  \"dueDate\": \"2025-10-24\",\n  \"billingType\": \"PIX\",\n  \"totalValue\": 0\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payments?environment={{environment}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments"
+							],
+							"query": [
+								{
+									"key": "environment",
+									"value": "{{environment}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Pagamento Cartão de Crédito",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customer\": \"{{customerId}}\",\n  \"value\": 0,\n  \"dueDate\": \"2025-05-01\",\n  \"installmentCount\": 2,\n  \"totalValue\": 100,\n  \"creditCard\": {\n    \"holderName\": \"John Doe\",\n    \"number\": \"4242424242424242\",\n    \"expiryMonth\": \"4\",\n    \"expiryYear\": \"2025\",\n    \"ccv\": \"123\"\n  },\n  \"creditCardHolderInfo\": {\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@asaas.com\",\n    \"cpfCnpj\": \"12345678901\",\n    \"postalCode\": \"12345678\",\n    \"addressNumber\": \"123\",\n    \"addressComplement\": null,\n    \"phone\": null,\n    \"mobilePhone\": null\n  },\n  \"remoteIp\": \"1b67:5bcb:f9da:0e6f:bc5a:5a9c:b299:b66a\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payments/credit-card?environment={{environment}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payments",
+								"credit-card"
+							],
+							"query": [
+								{
+									"key": "environment",
+									"value": "{{environment}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Pagamentos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/payments?environment={{environment}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments"
+							],
+							"query": [
+								{
+									"key": "environment",
+									"value": "{{environment}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Info PIX",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/payments/{{paymentId}}/pix-info?environment={{environment}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"{{paymentId}}",
+								"pix-info"
+							],
+							"query": [
+								{
+									"key": "environment",
+									"value": "{{environment}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Pagamento",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/payments/{{paymentId}}?environment={{environment}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"{{paymentId}}"
+							],
+							"query": [
+								{
+									"key": "environment",
+									"value": "{{environment}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Testar Token - Cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Cliente Teste\",\n    \"cpfCnpj\": \"12345678909\",\n    \"email\": \"cliente@teste.com\",\n    \"phone\": \"11999999999\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/customers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Testar Token - Pagamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "access_token",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer\": \"cus_000000000001\",\n    \"billingType\": \"CREDIT_CARD\",\n    \"value\": 100.00,\n    \"dueDate\": \"2024-03-20\",\n    \"description\": \"Teste de pagamento com access token\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "environment",
+			"value": "SANDBOX",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "$aact_hmlg_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmRiMjY2NWFhLWExNmMtNDVkOS05NWNlLWJlNGQ0YWMyYjJkMTo6JGFhY2hfNTM0NTg1ZGQtNWU2OC00NDk0LTlmNmEtZjQ2MjE0NmMwNjRh",
+			"type": "string"
+		},
+		{
+			"key": "clientId",
+			"value": "306886d4-62a1-4b72-ac05-fb9a155185db",
+			"type": "string"
+		},
+		{
+			"key": "tokenId",
+			"value": "f777e50e-0eb1-4143-b870-67ecffd8dc4d",
+			"type": "string"
+		},
+		{
+			"key": "customerId",
+			"value": "cus_000006705636",
+			"type": "string"
+		},
+		{
+			"key": "paymentId",
+			"value": "pay_u4n5vwde3gccxxxq",
+			"type": "string"
+		}
+	]
+}
