@@ -6,11 +6,14 @@ import { join } from 'path';
 import { AccessTokensModule } from 'src/domain/payments/asaas/access-tokens/access-tokens.module';
 import { AsaasModule } from 'src/domain/payments/asaas/asaas/asaas.module';
 import asaasConfig from 'src/domain/payments/asaas/config/asaas.config';
-import databaseConfig, { getTypeOrmConfig } from 'src/domain/payments/asaas/config/database.config';
+import databaseConfig, {
+  getTypeOrmConfig,
+} from 'src/domain/payments/asaas/config/database.config';
 import { CustomersModule } from 'src/domain/payments/asaas/customers/customers.module';
 import { NotificationsModule } from 'src/domain/payments/asaas/notifications/notifications.module';
 import { PaymentLinksModule } from 'src/domain/payments/asaas/payment-links/payment-links.module';
 import { PaymentsModule } from 'src/domain/payments/asaas/payments/payments.module';
+import { StripeModule } from './domain/payments/stripe/stripe.module';
 
 @Module({
   imports: [
@@ -34,6 +37,7 @@ import { PaymentsModule } from 'src/domain/payments/asaas/payments/payments.modu
     PaymentsModule,
     PaymentLinksModule,
     NotificationsModule,
+    StripeModule,
   ],
 })
 export class AppModule {}

@@ -27,7 +27,6 @@ export class AdminController {
       );
       let html = readFileSync(adminHtmlPath, 'utf8');
 
-      // Replace the placeholder with the actual admin password
       html = html.replace('{{ADMIN_PASSWORD}}', this.adminPassword);
 
       res.send(html);

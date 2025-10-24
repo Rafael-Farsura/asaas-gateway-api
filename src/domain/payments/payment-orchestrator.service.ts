@@ -34,7 +34,7 @@ export class PaymentOrchestratorService {
           customer: data.customerId ?? '',
           value: data.amount / 100, // Stripe usa centavos, Asaas usa reais
           dueDate: data.dueDate ?? new Date().toISOString().split('T')[0],
-          billingType: 'PIX', 
+          billingType: 'PIX',
         },
         token!,
         environment,

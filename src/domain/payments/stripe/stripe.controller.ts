@@ -5,6 +5,7 @@ import {
   Req,
   Headers,
   RawBodyRequest,
+  BadRequestException,
 } from '@nestjs/common';
 import { StripeService } from './stripe.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
@@ -24,6 +25,11 @@ export class StripeController {
     @Req() req: RawBodyRequest<Request>,
     @Headers('stripe-signature') signature: string,
   ) {
-    return this.stripeService.handleWebhookEvent(signature, req.rawBody);
+    if (!signature)
+      throw new BadRequestException('Missing stripe-signature header');
+
+    if (!req.rawBody) throw new BadRequestException('Missing raw body');
+
+    return await this.stripeService.handleWebhookEvent(signature, req.rawBody);
   }
 }

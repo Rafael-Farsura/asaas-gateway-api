@@ -33,6 +33,7 @@ export default tseslint.config(
       '@typescript-eslint/await-thenable': 'off',
       '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
+      'prettier/prettier': ['error', { endOfLine: 'auto' }],
     },
   },
 );

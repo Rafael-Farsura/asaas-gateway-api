@@ -10,13 +10,13 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   app.setGlobalPrefix('api');
-  
-  app.use('/stripe/webhook', raw({ type: 'application/json' }));
+
+  app.use('/api/stripe/webhook', raw({ type: 'application/json' }));
   app.use(json());
 
   setupSwagger(app);
   setupCors(app);
-  
+
   const port = configService.get<number>('PORT') || 8000;
   await app.listen(port);
 }

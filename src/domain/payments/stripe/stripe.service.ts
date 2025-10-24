@@ -9,9 +9,10 @@ export class StripeService {
   private readonly logger = new Logger(StripeService.name);
 
   constructor(private readonly config: ConfigService) {
-    this.stripe = new Stripe(this.config.get<string>('STRIPE_SECRET_KEY') | '', {
-      apiVersion: '2025-04-30',
-    });
+    const secretKey = this.config.get<string>('STRIPE_SECRET_KEY');
+    if (!secretKey) throw new Error('STRIPE_SECRET_KEY is not defined');
+
+    this.stripe = new Stripe(secretKey, { apiVersion: '2025-09-30.clover' });
   }
 
   async createPaymentSession(dto: CreatePaymentDto) {
@@ -41,8 +42,13 @@ export class StripeService {
 
   async handleWebhookEvent(signature: string, payload: Buffer) {
     const secret = this.config.get<string>('STRIPE_WEBHOOK_SECRET');
+    if (!secret) throw new Error('STRIPE_WEBHOOK_SECRET is not defined');
 
-    const event = this.stripe.webhooks.constructEvent(payload, signature, secret);
+    const event = this.stripe.webhooks.constructEvent(
+      payload,
+      signature,
+      secret,
+    );
 
     switch (event.type) {
       case 'checkout.session.completed':

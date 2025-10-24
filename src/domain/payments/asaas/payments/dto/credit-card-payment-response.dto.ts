@@ -1,6 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BillingType, BillingTypeEnum } from 'src/domain/payments/asaas/types/billing-type.enum';
-import { CardBrandsEnum, CardBrandsType } from 'src/domain/payments/asaas/types/card-brands.enum';
+import {
+  BillingType,
+  BillingTypeEnum,
+} from 'src/domain/payments/asaas/types/billing-type.enum';
+import {
+  CardBrandsEnum,
+  CardBrandsType,
+} from 'src/domain/payments/asaas/types/card-brands.enum';
 import {
   PaymentStatus,
   PaymentStatusEnum,

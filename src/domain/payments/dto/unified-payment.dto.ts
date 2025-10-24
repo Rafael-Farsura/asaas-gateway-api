@@ -7,7 +7,10 @@ export class UnifiedPaymentDto {
   @ApiProperty({ example: 'brl', description: 'Moeda do pagamento' })
   currency: string;
 
-  @ApiProperty({ example: 'Plano Premium', description: 'Descrição do pagamento' })
+  @ApiProperty({
+    example: 'Plano Premium',
+    description: 'Descrição do pagamento',
+  })
   description: string;
 
   @ApiProperty({ example: 'john@example.com', required: false })
