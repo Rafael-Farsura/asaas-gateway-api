@@ -1,21 +1,26 @@
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { setupCors } from 'src/config/cors.config';
+import { setupCors } from 'src/domain/payments/asaas/config/cors.config';
 import { AppModule } from './app.module';
-import { setupSwagger } from './config/swagger.config';
+import { setupSwagger } from './domain/payments/asaas/config/swagger.config';
+import { json, raw } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
 
   app.setGlobalPrefix('api');
+  
+  app.use('/stripe/webhook', raw({ type: 'application/json' }));
+  app.use(json());
 
   setupSwagger(app);
   setupCors(app);
-
+  
   const port = configService.get<number>('PORT') || 8000;
   await app.listen(port);
 }
+
 bootstrap()
   .then(() => {
     console.log(`Server listening on port ${process.env.PORT}

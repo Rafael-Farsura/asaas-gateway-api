@@ -3,14 +3,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
-import { AccessTokensModule } from 'src/access-tokens/access-tokens.module';
-import { AsaasModule } from 'src/asaas/asaas.module';
-import asaasConfig from 'src/config/asaas.config';
-import databaseConfig, { getTypeOrmConfig } from 'src/config/database.config';
-import { CustomersModule } from 'src/customers/customers.module';
-import { NotificationsModule } from 'src/notifications/notifications.module';
-import { PaymentLinksModule } from 'src/payment-links/payment-links.module';
-import { PaymentsModule } from 'src/payments/payments.module';
+import { AccessTokensModule } from 'src/domain/payments/asaas/access-tokens/access-tokens.module';
+import { AsaasModule } from 'src/domain/payments/asaas/asaas/asaas.module';
+import asaasConfig from 'src/domain/payments/asaas/config/asaas.config';
+import databaseConfig, { getTypeOrmConfig } from 'src/domain/payments/asaas/config/database.config';
+import { CustomersModule } from 'src/domain/payments/asaas/customers/customers.module';
+import { NotificationsModule } from 'src/domain/payments/asaas/notifications/notifications.module';
+import { PaymentLinksModule } from 'src/domain/payments/asaas/payment-links/payment-links.module';
+import { PaymentsModule } from 'src/domain/payments/asaas/payments/payments.module';
 
 @Module({
   imports: [
